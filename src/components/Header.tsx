@@ -25,11 +25,6 @@ function Header({showSearchResult}: HeaderProps) {
     showSearchResult(value), 1000), [showSearchResult]
   )
 
-  //effect to focus on the input field on load
-  useEffect(() => {
-    inputRef.current?.focus();
-  }, []);
-
   return (
     <Navbar bg="secondary">
       <Container fluid>

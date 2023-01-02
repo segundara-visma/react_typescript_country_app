@@ -38,7 +38,7 @@ function Home() {
           </Alert>
         </div>
       )}
-      {countries && countries.length > 0 && !error && (
+      {countries && countries.length > 0 && !error && !loading && (
         <>
           <Listing countries={countries} />
         </>
