@@ -1,19 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import Table from 'react-bootstrap/Table';
 import TableBody from './Row'
 
 interface ListingProps {
     countries: any[];
+    sort: (item: string) => void;
+    icon: string;
 }
 
-function Listing({countries}: ListingProps) {
+function Listing({countries, sort, icon}: ListingProps) {
+
+    const [order, setOrder] = useState<string>('asc');
+
+    const reSetOrder = () => {
+        setOrder(order === 'asc' ? 'desc' : 'asc')
+        sort(order)
+    }
 
   return (
     <Table striped bordered hover>
       <thead>
         <tr>
           <th>Flag</th>
-          <th style={{ cursor: "pointer" }}>Name</th>
+          <th onClick={() => reSetOrder()} style={{ cursor: "pointer" }}>Name <i className={`fa fa-${icon}`}></i></th>
           <th>Region</th>
           <th>Population</th>
           <th>Languages</th>
