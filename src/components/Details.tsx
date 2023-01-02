@@ -29,7 +29,6 @@ export default function Details() {
 
   const getNativeName = (item: nameType) => {
     const key = Object.keys(item?.nativeName).find(key => item?.nativeName[key])
-    console.log(Object.keys(item?.nativeName).find(key => item?.nativeName))
     return (key && <>{item?.nativeName[key]['official']}</>)
   }
 
