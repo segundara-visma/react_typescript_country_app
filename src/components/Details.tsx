@@ -8,10 +8,12 @@ import countryType from '../types/country.type'
 import Alert from 'react-bootstrap/Alert';
 import Spinner from 'react-bootstrap/Spinner';
 
+let url: string;
+
 export default function Details() {
   const {name} = useParams();
 
-  const url: string = "https://restcountries.com/v3.1/name/"+name;
+  url = "https://restcountries.com/v3.1/name/"+name;
 
   const {countries,loading,error} = useFetch({url})
 
