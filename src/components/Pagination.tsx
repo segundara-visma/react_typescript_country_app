@@ -4,13 +4,7 @@ import PreviousPageButton from './paginationButtons/PreviousPageButton';
 import NextPageButton from './paginationButtons/NextPageButton';
 import FirstPageButton from './paginationButtons/FirstPageButton';
 import LastPageButton from './paginationButtons/LastPageButton';
-
-interface PaginationProps {
-    onClick: (item: number) => void;
-    currentPage: number;
-    numOfPages: number;
-    maxVisible: number;
-}
+import PaginationProps from '../types/paginationProps.type';
 
 function Pagination({ onClick, currentPage, numOfPages, maxVisible }: PaginationProps) {
 
@@ -24,30 +18,30 @@ function Pagination({ onClick, currentPage, numOfPages, maxVisible }: Pagination
             onClick={onClick}
             currentPage={currentPage}
           />
-          {currentPage > Math.ceil(maxVisible / 2) && numOfPages > maxVisible && (
+          {maxVisible && numOfPages && currentPage > Math.ceil(maxVisible / 2) && numOfPages > maxVisible && (
             <i className="fa fa-ellipsis-h" style={{ marginLeft: "2px", marginRight: "2px" }}></i>
           )}
           <VisiblePageNumbers
             onClick={onClick}
             currentPage={currentPage}
-            pages={numOfPages}
+            numOfPages={numOfPages}
             maxVisible={maxVisible}
           />
-          {maxVisible % 2 === 1 ? (currentPage <= numOfPages - Math.ceil(maxVisible / 2) && numOfPages > maxVisible && (
+          {maxVisible && numOfPages && maxVisible % 2 === 1 ? (currentPage <= numOfPages - Math.ceil(maxVisible / 2) && numOfPages > maxVisible && (
             <i className="fa fa-ellipsis-h" style={{ marginLeft: "2px", marginRight: "2px" }}></i>
           ))
-          :(currentPage < numOfPages - Math.ceil(maxVisible / 2) && numOfPages > maxVisible && (
+          :(maxVisible && numOfPages && currentPage < numOfPages - Math.ceil(maxVisible / 2) && numOfPages > maxVisible && (
             <i className="fa fa-ellipsis-h" style={{ marginLeft: "2px", marginRight: "2px" }}></i>
           ))}
           <NextPageButton
             onClick={onClick}
             currentPage={currentPage}
-            pages={numOfPages}
+            numOfPages={numOfPages}
           />
           <LastPageButton
             onClick={onClick}
             currentPage={currentPage}
-            pages={numOfPages}
+            numOfPages={numOfPages}
           />
         </Stack>
     );

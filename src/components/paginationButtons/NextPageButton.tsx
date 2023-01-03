@@ -1,15 +1,10 @@
 import Button from 'react-bootstrap/Button';
+import PaginationProps from '../../types/paginationProps.type';
 
-interface NextPageProps {
-    onClick: (item: number) => void;
-    currentPage: number;
-    pages: number;
-}
-
-const renderNextButton = ({onClick, currentPage, pages}: NextPageProps) => {
+const renderNextButton = ({onClick, currentPage, numOfPages}: PaginationProps) => {
     return (
       <>
-        {currentPage < pages ? (
+        {numOfPages && currentPage < numOfPages ? (
           <Button
               variant="outline-secondary"
               style={{ cursor: "pointer", marginLeft: "2px", marginRight: "2px" }}

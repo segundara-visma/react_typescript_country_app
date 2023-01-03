@@ -3,18 +3,13 @@ import Table from 'react-bootstrap/Table';
 import TableBody from './Row'
 import CountryProps from '../types/countryProps.type'
 
-type ListingProps = CountryProps & {
-    sort: (item: string) => void;
-    icon: string;
-};
-
-function Listing({countries, sort, icon}: ListingProps) {
+function Listing({countries, sort, icon}: CountryProps) {
 
     const [order, setOrder] = useState<string>('asc');
 
     const reSetOrder = () => {
         setOrder(order === 'asc' ? 'desc' : 'asc')
-        sort(order)
+        sort && sort(order)
     }
 
   return (

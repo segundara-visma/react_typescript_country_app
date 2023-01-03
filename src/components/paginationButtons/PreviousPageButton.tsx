@@ -1,11 +1,7 @@
 import Button from 'react-bootstrap/Button';
+import PaginationProps from '../../types/paginationProps.type';
 
-interface PreviousPageProps {
-    onClick: (item: number) => void;
-    currentPage: number;
-}
-
-const renderPrevButton = ({onClick, currentPage}: PreviousPageProps) => {
+const renderPrevButton = ({onClick, currentPage}: PaginationProps) => {
     return (
       <>
         {currentPage > 1 ? (

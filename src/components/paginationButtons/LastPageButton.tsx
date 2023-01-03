@@ -1,19 +1,14 @@
 import Button from 'react-bootstrap/Button';
+import PaginationProps from '../../types/paginationProps.type';
 
-interface LastPageProps {
-    onClick: (item: number) => void;
-    currentPage: number;
-    pages: number;
-}
-
-const renderLastButton = ({onClick, currentPage, pages}: LastPageProps) => {
+const renderLastButton = ({onClick, currentPage, numOfPages}: PaginationProps) => {
     return (
       <>
-        {currentPage < pages ? (
+        {numOfPages && currentPage < numOfPages ? (
           <Button
             variant="outline-secondary"
             style={{ cursor: "pointer", marginLeft: "2px", marginRight: "2px" }}
-            onClick={() => onClick(pages)}
+            onClick={() => onClick(numOfPages)}
           >
             <i className="fa fa-angle-double-right"></i>
           </Button>

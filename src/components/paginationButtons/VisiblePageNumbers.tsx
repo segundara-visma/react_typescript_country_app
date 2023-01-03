@@ -1,11 +1,5 @@
 import Button from 'react-bootstrap/Button';
-
-interface VisiblePagesProps {
-    onClick: (item: number) => void;
-    currentPage: number;
-    pages: number;
-    maxVisible: number;
-}
+import PaginationProps from '../../types/paginationProps.type';
 
 let visiblePages: any[];
 let upperLimit: number;
@@ -14,17 +8,17 @@ let midCeil: number;
 let numOfButtonsToRight: number;
 let numOfButtonsToLeft: number;
 
-function RenderPageNumbers({onClick, currentPage, pages, maxVisible}: VisiblePagesProps) {
+function RenderPageNumbers({onClick, currentPage, numOfPages, maxVisible}: PaginationProps) {
     visiblePages = [];
 
-    if(pages > maxVisible) {
+    if(maxVisible && numOfPages && numOfPages > maxVisible) {
         midCeil = Math.ceil(maxVisible / 2)
         numOfButtonsToRight = Math.floor(maxVisible / 2)
         numOfButtonsToLeft = maxVisible % 2 === 1 ? maxVisible - midCeil : maxVisible - midCeil - 1
-        upperLimit = currentPage <= midCeil ? maxVisible : (currentPage > midCeil && currentPage + midCeil < pages + 1 ? currentPage + numOfButtonsToRight : pages)
-        lowerLimit = currentPage > pages - midCeil ? pages - maxVisible + 1 : (currentPage <= pages - midCeil && currentPage > midCeil ? currentPage - numOfButtonsToLeft : 1)
+        upperLimit = currentPage <= midCeil ? maxVisible : (currentPage > midCeil && currentPage + midCeil < numOfPages + 1 ? currentPage + numOfButtonsToRight : numOfPages)
+        lowerLimit = currentPage > numOfPages - midCeil ? numOfPages - maxVisible + 1 : (currentPage <= numOfPages - midCeil && currentPage > midCeil ? currentPage - numOfButtonsToLeft : 1)
     } else {
-        upperLimit = pages
+        upperLimit = numOfPages ? numOfPages : 1;
         lowerLimit = 1
     }
 
