@@ -1,11 +1,16 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Header from "./Header";
 import Listing from "./Listing";
 import Pagination from "./Pagination";
 import Alert from 'react-bootstrap/Alert';
 import Spinner from 'react-bootstrap/Spinner';
 import _ from 'lodash'
-import { useFetch } from './useFetch'
+import { useFetch } from '../services/useFetch'
+
+let url: string
+let newList: any[];
+let indexOfLastRecord: number;
+let indexOfFirstRecord: number;
 
 function Home() {
   const [currentRecords, setCurrentRecords] = useState<any[]>(['']);
@@ -17,7 +22,7 @@ function Home() {
   const [sortingOrder, setSortingOrder] = useState<string>('');
   const [sortingIconPosition, setSortingIconPosition] = useState<string>('sort');
 
-  const url = "https://restcountries.com/v3.1/all";
+  url = "https://restcountries.com/v3.1/all";
 
   const {countries,loading,error} = useFetch({url})
 
@@ -34,9 +39,9 @@ function Home() {
   }
 
   useEffect(() => {
-    let newList: any[];
-    const indexOfLastRecord = currentPage * recordsPerPage;
-    const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
+    newList = [];
+    indexOfLastRecord  = currentPage * recordsPerPage;
+    indexOfFirstRecord  = indexOfLastRecord - recordsPerPage;
 
     const getCountryList = (countries: any[]) => {
       if(sortingOrder === 'asc') {
@@ -63,10 +68,6 @@ function Home() {
         setCurrentRecords(Array.isArray(currentRecords) ? currentRecords : [])
         setNPages(nPages)
       }
-      // const currentRecords = countries && countries.length && countries.slice(indexOfFirstRecord, indexOfLastRecord);
-      // const nPages = countries && countries.length && Math.ceil(countries.length / recordsPerPage);
-      // setCurrentRecords(Array.isArray(currentRecords) ? currentRecords : [])
-      // setNPages(nPages)
     }
 
     const filteredData = (data: any[]) => {

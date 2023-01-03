@@ -1,13 +1,10 @@
-import React, { useState, useEffect, FormEvent, useRef, useMemo } from 'react'
+import { useState, FormEvent, useRef, useMemo } from 'react'
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import debounce from 'lodash/debounce';
-
-interface HeaderProps {
-    showSearchResult: (item: string) => void;
-}
+import HeaderProps from '../types/headerProps.type'
 
 function Header({showSearchResult}: HeaderProps) {
 
@@ -16,7 +13,6 @@ function Header({showSearchResult}: HeaderProps) {
 
   const searchStringHandler = (e: FormEvent) => {
     e.preventDefault();
-    // if (inputRef.current?.value.length === 0) return;
     setSearchString(`${inputRef.current?.value}`);
     debouncedChangeHandler(`${inputRef.current?.value}`)
   };

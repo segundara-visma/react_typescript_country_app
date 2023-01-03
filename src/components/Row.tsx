@@ -1,24 +1,9 @@
-import React from "react";
 import Button from 'react-bootstrap/Button';
 import { Link } from "react-router-dom";
+import countryType from '../types/country.type'
+import CountryProps from '../types/countryProps.type'
 
-interface TableBodyProps {
-    countries: any[];
-}
-
-interface nameType {
-    common: string;
-}
-
-interface countryType {
-    flag: any;
-    name?: nameType;
-    region: string;
-    population: number;
-    languages: any;
-}
-
-function TableBody({countries}: TableBodyProps) {
+function TableBody({countries}: CountryProps) {
 
   return (
       <>

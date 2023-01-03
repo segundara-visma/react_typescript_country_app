@@ -1,4 +1,3 @@
-import React from "react";
 import Stack from 'react-bootstrap/Stack';
 import VisiblePageNumbers from './paginationButtons/VisiblePageNumbers';
 import PreviousPageButton from './paginationButtons/PreviousPageButton';
