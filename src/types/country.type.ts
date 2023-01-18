@@ -3,10 +3,10 @@ export default interface countryType {
     name?: nameType;
     region: string;
     population: number;
-    languages: any;
+    languages: {};
     capital: string;
     subregion: string;
-    latlng: any[];
+    latlng: number[];
 }
 
 interface nameType {
